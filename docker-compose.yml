@@ -1,0 +1,14 @@
+version: "1.0"
+
+services:
+  app:
+    build: ./flaskapp
+    links:
+      - db
+    ports:
+      - "5000:5000"
+
+  db:
+    build: ./mysql
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro
