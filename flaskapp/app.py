@@ -1,18 +1,20 @@
 #Imports
-from flask import Flask, jsonify, make_response
-import mysql.connector
-#from datetime import datetime
+from flask import Flask, jsonify, make_response 
+from flask_mysqldb import MySQL
 from flask import request
 
 app = Flask(__name__)
 
-db = mysql.connector.connect(
-    host='127.0.0.1',
-    user='warehouse_admin',
-    passwd='devops',
-    db='warehouse',
-)
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'flask'
 app.config['JSON_AS_ASCII'] = False
+
+mysql = MySQL(app)
+
+
+
 
 @app.route('/')
 def hello():
