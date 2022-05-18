@@ -1,9 +1,5 @@
-CREATE USER 'docker'@'flask';
-CREATE DATABASE docker;
-GRANT ALL PRIVILEGES ON *.* TO 'docker'@'flask' WITH GRANT OPTION;
-FLUSH PRIVILEGES;
-
-USE docker;
+CREATE DATABASE flask;
+USE flask;
 
 CREATE TABLE persons (
     PersonID int NOT NULL AUTO_INCREMENT,

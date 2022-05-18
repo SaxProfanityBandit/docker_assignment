@@ -6,9 +6,9 @@ from flask import request
 app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'mysql'
-app.config['MYSQL_USER'] = 'docker'
-app.config['MYSQL_PASSWORD'] = 'flask'
-app.config['MYSQL_DB'] = 'docker'
+app.config['MYSQL_USER'] = 'sax'
+app.config['MYSQL_PASSWORD'] = 'password'
+app.config['MYSQL_DB'] = 'flask'
 app.config['JSON_AS_ASCII'] = False
 
 mysql = MySQL(app)

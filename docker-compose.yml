@@ -3,25 +3,30 @@ version: "1.0"
 services:
   app:
     build: ./flaskapp
+    container_name: flask
     links:
       - db
     networks:
       default:
         aliases:
-          - "flask"
+        - "flask"
     ports:
       - "5000:5000"
 
   db:
     build: ./mysql
+    container_name: mysql
+    
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=True
-      - MYSQL_USER=docker
-      - MYSQL_PASSWORD=flask
+      - MYSQL_USER=sax
+      - MYSQL_PASSWORD=password
       - MYSQL_HOST=mysql
     networks:
       default:
         aliases:
         - "mysql"
+    command: --init-file init.sql
     volumes:
-      - ./db:/docker-entrypoint-initdb.d/:ro
+        - /init.sql:/init.sql
+        - ./db":"/db"
