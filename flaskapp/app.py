@@ -20,7 +20,30 @@ mysql = MySQL(app)
 def hello():
    return 'Hello!'
 
+@app.route('/users', methods=['GET', 'POST'])
+def index():
+   if request.method == "POST":
+      details = request.form
+      name = details['name']
+      age = details['age']
+      cur = mysql.connection.cursor()
+      cur.execute("INSERT INTO persons(name, age) VALUES (%s, %s)", (name, age))
+      mysql.connection.commit()
+      cur.close()
+      return 'Success!'
+   elif request.method == "GET":
+      cur = mysql.connection.cursor()
+      cur.execute("SELECT * FROM persons")
+      data = cur.fetchall()
+      mysql.connection.commit()
+      cur.close()
+      return data;
+
+
+    return render_template('index.html')
+
 if __name__ == '__main__':
     app.run(
-       host="0.0.0.0"
+       host="0.0.0.0",
+       debug=True
 )
