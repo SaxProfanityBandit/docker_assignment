@@ -15,32 +15,32 @@ mysql = MySQL(app)
 
 @app.route('/')
 def hello():
-   cur = mysql.connection.cursor()
-   cur.execute("SELECT * FROM persons")
-   data = cur.fetchall()
-   mysql.connection.commit()
-   cur.close()
-   return data;
-   #return 'Hello!'
+   index = """
+   <html>
+   <h1>Available routes</h1><br>
+   <li><a href='/users'>Users (GET)</a></li>
+   <li><a href='/users'>Users (POST), recommend using REST client to send data.</a></li>
+   </html>"""
+   return index
 
 @app.route('/users', methods=['GET', 'POST'])
 def users():
    if request.method == "POST":
-      details = request.form
+      details = request.json
       name = details['name']
       age = details['age']
       cur = mysql.connection.cursor()
-      cur.execute("INSERT INTO persons(name, age) VALUES (%s, %s)", (name, age))
+      cur.execute("INSERT INTO persons(Name, Age) VALUES (%s, %s)", (name, age))
       mysql.connection.commit()
       cur.close()
       return 'Success!'
    elif request.method == "GET":
       cur = mysql.connection.cursor()
       cur.execute("SELECT * FROM persons")
-      data = cur.fetchall()
       mysql.connection.commit()
+      data = cur.fetchall()
       cur.close()
-      return data;
+      return jsonify(data);
    else:
       return "Whoops, something went wrong!"
 
