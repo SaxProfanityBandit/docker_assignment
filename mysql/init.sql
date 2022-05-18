@@ -6,10 +6,8 @@ FLUSH PRIVILEGES;
 CREATE TABLE persons (
     PersonID int NOT NULL AUTO_INCREMENT,
     Name varchar(255),
-    Age int
+    Age int,
     PRIMARY KEY (PersonID)
 );
 
-INSERT INTO persons (Name, Age) values (
-    "Rickard", 28
-);
+INSERT INTO persons (Name, Age) values ("Rickard", 28);
