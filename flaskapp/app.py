@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'mysql'
 app.config['MYSQL_USER'] = 'docker'
-app.config['MYSQL_PASSWORD'] = ''
+#app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'flask'
 app.config['JSON_AS_ASCII'] = False
 
