@@ -1,3 +1,6 @@
+CREATE USER 'sax'@'flask';
+GRANT ALL PRIVILEGES ON *.* TO 'sax'@'flask' IDENTIFIED BY 'password' WITH GRANT OPTION;
+
 CREATE DATABASE flask;
 USE flask;
 

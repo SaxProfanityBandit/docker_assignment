@@ -9,24 +9,19 @@ services:
     networks:
       default:
         aliases:
-        - "flask"
+          - "flask"
     ports:
       - "5000:5000"
 
   db:
     build: ./mysql
     container_name: mysql
-    
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=True
-      - MYSQL_USER=sax
-      - MYSQL_PASSWORD=password
       - MYSQL_HOST=mysql
     networks:
       default:
         aliases:
-        - "mysql"
-    command: --init-file init.sql
+          - "mysql"
     volumes:
-        - /init.sql:/init.sql
-        - ./db":"/db"
+        - ./db:/docker-entrypoint-initdb.d/:ro
