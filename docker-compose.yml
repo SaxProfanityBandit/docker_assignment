@@ -5,10 +5,18 @@ services:
     build: ./flaskapp
     links:
       - db
+    networks:
+      default:
+        aliases:
+          - "flask"
     ports:
       - "5000:5000"
 
   db:
     build: ./mysql
+    networks:
+      default:
+        aliases:
+        - "mysql"
     volumes:
       - ./db:/docker-entrypoint-initdb.d/:ro
