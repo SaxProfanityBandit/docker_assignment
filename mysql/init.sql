@@ -1,6 +1,6 @@
-CREATE USER docker;
+CREATE USER 'docker'@'flask';
 CREATE DATABASE docker;
-GRANT ALL PRIVILEGES ON *.* TO 'docker'@'%';
+GRANT ALL PRIVILEGES ON *.* TO 'docker'@'flask' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 
 USE docker;

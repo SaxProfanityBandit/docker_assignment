@@ -14,6 +14,11 @@ services:
 
   db:
     build: ./mysql
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=True
+      - MYSQL_USER=docker
+      - MYSQL_PASSWORD=flask
+      - MYSQL_HOST=mysql
     networks:
       default:
         aliases:
