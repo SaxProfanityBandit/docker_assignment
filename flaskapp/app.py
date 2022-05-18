@@ -13,15 +13,18 @@ app.config['JSON_AS_ASCII'] = False
 
 mysql = MySQL(app)
 
-
-
-
 @app.route('/')
 def hello():
-   return 'Hello!'
+   cur = mysql.connection.cursor()
+   cur.execute("SELECT * FROM persons")
+   data = cur.fetchall()
+   mysql.connection.commit()
+   cur.close()
+   return data;
+   #return 'Hello!'
 
 @app.route('/users', methods=['GET', 'POST'])
-def index():
+def users():
    if request.method == "POST":
       details = request.form
       name = details['name']
@@ -38,6 +41,8 @@ def index():
       mysql.connection.commit()
       cur.close()
       return data;
+   else:
+      return "Whoops, something went wrong!"
 
 if __name__ == '__main__':
     app.run(
